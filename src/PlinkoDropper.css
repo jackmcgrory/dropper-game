@@ -1,0 +1,188 @@
+.plinko-dropper-container {
+    position: relative;
+    height: 105vh; /* Try and prevent oversized components if zooming */
+    width: 85vw;
+    max-height: 1300px;
+    max-width: 1200px;
+    min-height: 800px;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.dropper-and-labels-container {
+    position: relative;
+    width: 100%;
+    height: 785px;
+}
+
+.dropper-canvas {
+    background-color: #ffffff;
+    height: 100%;
+    width: 100%;
+    border-radius: 12px;
+    border: 3px solid #1e293b;
+    overflow: hidden;
+}
+
+.bucket-labels {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 50px; /* Use pixel value for fixed position - need to adapt */
+    width: 100%;
+}
+
+.bucket-label {
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5vh; 
+}
+
+.control-padding {
+    padding-top: 2vh; 
+}
+
+.controls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    margin-top: 2vh; 
+}
+
+.controls button,
+.controls input,
+.controls select {
+    margin: 1vh 0; 
+}
+
+@media (max-width: 600px) {
+    .plinko-dropper-container {
+        height: 75vh; 
+        width: 90vw;
+    }
+
+    .bucket-labels {
+        bottom: 100px;
+    }
+
+    .bucket-label {
+        font-size: 1.2vh; 
+    }
+
+    .control-padding {
+        padding-top: 1vh; 
+    }
+
+    .controls {
+        margin-top: 1vh; 
+    }
+
+    .controls button,
+    .controls input,
+    .controls select {
+        margin: 0.5vh 0; 
+    }
+}
+
+.slider-container {
+    display: flex;
+    align-items: center;
+}
+
+.slider-value {
+    margin-left: 10px;
+}
+
+
+.button {
+  padding: 0.6em 2em;
+  border: none;
+  outline: none;
+  color: rgb(255, 255, 255);
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+/*
+Cool button code - just experimenting 
+*/
+.button:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing-button 20s linear infinite;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+@keyframes glowing-button {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.button:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #222;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+.color-guide {
+    display: flex;
+    width: 100%;
+  }
+  
+  .color-guide-item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: inherit;
+    padding: 10px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+  }
