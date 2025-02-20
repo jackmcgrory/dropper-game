@@ -4,7 +4,6 @@
     width: 85vw;
     max-height: 1300px;
     max-width: 1200px;
-    min-height: 800px;
     min-width: 300px;
     display: flex;
     flex-direction: column;
@@ -61,10 +60,10 @@
     margin: 1vh 0; 
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
     .plinko-dropper-container {
-        height: 75vh; 
         width: 90vw;
+        min-height: 600px;
     }
 
     .bucket-labels {
