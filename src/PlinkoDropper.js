@@ -12,7 +12,7 @@ const PlinkoDropper = ({ labels = [], initialCols = 30, initialRows = 8, bucketH
 
   const baseWidth = 1200;
 
-  const colourList = ['#FF5733', '#33FF57', '#3357FF', '#FF33A1', '#33FFF5', '#FCBA03'];
+  const colourList = ['#EC79EE', '#BA75FE', '#728FFF', '#33B6FF', '#34E1A5', '#FF222F'];
   const [totalNumberOfBalls, setTotalNumberOfBalls] = useState(0);
   const [shuffledLabels, setShuffledLabels] = useState(labels);
   const [bucketStatus, setBucketStatus] = useState(new Array(labels.length).fill(true)); // Track bucket status
@@ -50,7 +50,7 @@ const PlinkoDropper = ({ labels = [], initialCols = 30, initialRows = 8, bucketH
         width: width,
         height: height,
         wireframes: false,
-        background: '#BBBBBB',
+        background: '#EDE9FF',
       },
     });
 
@@ -62,8 +62,12 @@ const PlinkoDropper = ({ labels = [], initialCols = 30, initialRows = 8, bucketH
     const bucketWalls = [];
     const bottomWalls = [];
     for (let i = 0; i <= shuffledLabels.length; i++) {
-      const bucketWall = Bodies.rectangle(bucketWidth * i, height, 10 * width / baseWidth, 350 * bucketHeight, { isStatic: true, friction: 10 });
-      const bottomWall = Bodies.rectangle(bucketWidth * (i + 0.5), height - 10, bucketWidth, 10, { isStatic: true, isSensor: false });
+      const bucketWall = Bodies.rectangle(bucketWidth * i, height, 10 * width / baseWidth, 350 * bucketHeight, { isStatic: true, friction: 10, render: {
+        fillStyle: '#26434B'
+      } });
+      const bottomWall = Bodies.rectangle(bucketWidth * (i + 0.5), height - 10, bucketWidth, 10, { isStatic: true, isSensor: false, render: {
+        fillStyle: '#26434B'
+      }  });
       bucketWalls.push(bucketWall);
       bottomWalls.push(bottomWall);
     }
@@ -90,7 +94,6 @@ const PlinkoDropper = ({ labels = [], initialCols = 30, initialRows = 8, bucketH
     Events.on(engineRef.current, 'collisionStart', event => {
       event.pairs.forEach(pair => {
         const { bodyA, bodyB } = pair;
-        console.log("number of grains is " + grainList.length);
         bottomWalls.forEach((wall, index) => {
           if ((bodyA === wall && bucketStatus[index]) || (bodyB === wall && bucketStatus[index])) {
             // Place a wall on top of the bucket
@@ -168,7 +171,6 @@ const addGrain = () => {
         fillStyle: grainColor,
       }
     });
-    console.log("adding grain");
     grainList.push(grain);
     World.add(engineRef.current.world, grain);
   };
@@ -196,6 +198,13 @@ const addGrain = () => {
 
   return (
     <div className="plinko-dropper-container">
+          <div className="color-guide">
+        {colourList.map((color, index) => (
+          <div key={index} className="color-guide-item" style={{ backgroundColor: color }}>
+            Team {index + 1}
+          </div>
+        ))}
+      </div>
       <div className="dropper-and-labels-container">
         <div ref={canvasRef} onMouseDown={dropBalls} className="dropper-canvas" />
         <div className="bucket-labels">
@@ -206,17 +215,10 @@ const addGrain = () => {
           ))}
         </div>
       </div>
-      <div className="color-guide">
-        {colourList.map((color, index) => (
-          <div key={index} className="color-guide-item" style={{ backgroundColor: color }}>
-            Team {index + 1}
-          </div>
-        ))}
-      </div>
       <div className="control-padding"></div>
       <div className="controls">
         <button onClick={dropBalls} className='button'>Drop Ball</button>
-        <button onClick={shuffleLabels} className='button'>Shuffle Labels</button>
+        <button onClick={shuffleLabels} className='button alternate'>Shuffle Labels</button>
       </div>
     </div>
   );
