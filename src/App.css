@@ -1,18 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Pixelfy+Sans&display=swap');
+/* Add to your CSS file, e.g., App.css or styles.css */
+
+@font-face {
+  font-family: 'MyCustomFont';
+  src: url('fonts/PixelifySans-Regular.ttf') format('truetype'); /* Fixed format typo */
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: 'MyCustomFont', sans-serif; /* Add fallback font */
+}
 
 .app-container {
   position: fixed;
   width: 100%;
   height: 100%;
-  background-color: #FFCCD9; 
+  background-color: #FFCCD9;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-
-* {
-  font-family: 'Pixelfy Sans', sans-serif;
-  /* Fallback to generic sans-serif if Pixelfy Sans is unavailable */
-}
-
