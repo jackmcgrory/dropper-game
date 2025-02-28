@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelfy+Sans&display=swap');
+
 .app-container {
   position: fixed;
   width: 100%;
@@ -8,3 +10,9 @@
   justify-content: center;
   align-items: center;
 }
+
+* {
+  font-family: 'Pixelfy Sans', sans-serif;
+  /* Fallback to generic sans-serif if Pixelfy Sans is unavailable */
+}
+
