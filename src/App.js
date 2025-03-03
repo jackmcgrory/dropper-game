@@ -3,16 +3,28 @@ import './App.css';
 import PlinkoDropper from './PlinkoDropper';
 
 function App() {
-  const labelSet = [
-    ['Investments', 'Budgeting', 'Protection','General Insurance', 'Building your Pension', 'Accessing your Pension']
-  ];
-  const [currentBucketList, setCurrentBucketList] = useState(labelSet[0])
+const labelSet = [
+['Investments', 'Budgeting', 'Protection','General Insurance', 'Building your Pension', 'Accessing your pension']
+];
+const [currentBucketList, setCurrentBucketList] = useState(labelSet[0])
 
-  return (
-    <div className="app-container">
-     <PlinkoDropper labels={currentBucketList} cols={30} rows={20} ballSize={20} ballCount={1} />
-    </div>
-  );
+const updateBuckets = (event) => {
+const selectedIndex = event.target.value;
+setCurrentBucketList(labelSet[selectedIndex]);
+}
+
+return (
+
+
+  {/* <select onChange={updateBuckets} className="dropdown">
+      {labelSet.map((labels, index) => (
+        <option key={index} value={index}>
+          {(index === 0) ? 'Category' : 'Age Group'}
+        </option>
+      ))}
+    </select> */}
+</div>
+);
 }
 
 export default App;
