@@ -214,7 +214,7 @@ const PlinkoDropper = ({ labels = [], initialCols = 30, initialRows = 8, bucketH
   };
 
   const shuffleLabels = () => {
-    if(currentTeamList[0] == 'na'){
+    if(currentTeamList[0] == 'Stardevs Valley'){
       setCurrentTeamList(teamNameListB);
     }else {
       setCurrentTeamList(teamNameListA);
