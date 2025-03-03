@@ -13,9 +13,9 @@ const PlinkoDropper = ({ labels = [], initialCols = 30, initialRows = 8, bucketH
   const baseWidth = 1200;
 
   const colourList = ['#EC79EE', '#BA75FE', '#728FFF', '#33B6FF', '#34E1A5'];
-  const teamNameListA = ['na', 'no', 'naw', 'nae', 'nuh huh'];
-  const teamNameListB = ['wow', 'aha', 'yes', 'aye', 'yup'];
-  const timeList = ['9:00', '11:00', '13:00', '13:30', '4:59'];
+  const teamNameListA = ['Stardevs Valley', 'Grand Theft Agile', 'Ratchet & Bank', 'Claw and Order', 'Final Finacey V'];
+  const teamNameListB = ['Collossal Cave Adventurers', 'Must Be Napier', 'Polar Ducks', '3 Raccoons in a Trench Coat', 'University of Dundee'];
+  const timeList = ['3:30pm', '3:40pm', '3:50pm', '4:00pm', '4:10pm'];
   const [currentTeamList, setCurrentTeamList] = useState(teamNameListA);
   var totalNumberOfBalls = 0;
   const [shuffledLabels, setShuffledLabels] = useState(labels);
