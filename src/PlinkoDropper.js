@@ -12,14 +12,10 @@ const PlinkoDropper = ({ labels = [], initialCols = 30, initialRows = 8, bucketH
   
   const baseWidth = 1200;
 
-  const colourList = ['#EC79EE', '#BA75FE', '#728FFF', '#33B6FF', '#34E1A5'];
-  const teamNameListA = ['Stardevs Valley', 'Grand Theft Agile', 'Ratchet & Bank', 'Claw and Order', 'Final Finacey V'];
-  const teamNameListB = ['Collossal Cave Adventurers', 'Must Be Napier', 'Polar Ducks', '3 Raccoons in a Trench Coat', 'University of Dundee'];
-  const timeList = ['3:30pm', '3:40pm', '3:50pm', '4:00pm', '4:10pm'];
-  const [currentTeamList, setCurrentTeamList] = useState(teamNameListA);
+ const colourList = ['#EC79EE', '#BA75FE', '#728FFF', '#33B6FF', '#34E1A5','#ea2431' ];
+  const teamList = ['Heritage', 'Protection', 'Waterfront','Retirement', 'Workplace', 'General Insurance'];
+  const timeList = ['Q2 2025', 'Q3 2025', 'Q4 2025', 'Q1 2026', 'Q2 2026', 'Q3 2026'];
   var totalNumberOfBalls = 0;
-  const [shuffledLabels, setShuffledLabels] = useState(labels);
-  const [bucketStatus, setBucketStatus] = useState(new Array(labels.length).fill(true)); // Track bucket status
 
   useEffect(() => {
     initializeRenderer();
@@ -28,13 +24,7 @@ const PlinkoDropper = ({ labels = [], initialCols = 30, initialRows = 8, bucketH
       clearRenderer();
       window.removeEventListener('resize', handleResize);
     };
-  }, [shuffledLabels, bucketHeight, initialCols, initialRows, ballSize, currentTeamList]);
-
-  useEffect(() => {
-    // reset 
-    setShuffledLabels(labels);
-    setBucketStatus(new Array(labels.length).fill(true));
-  }, [labels]);
+  }, [ bucketHeight, initialCols, initialRows, ballSize]);
 
   const handleResize = () => {
     clearRenderer();
@@ -192,7 +182,7 @@ const PlinkoDropper = ({ labels = [], initialCols = 30, initialRows = 8, bucketH
     const x = Math.random() * width;
     const jitter = (Math.random() - 0.5) * 100;  
     const grainColor = colourList[totalNumberOfBalls % colourList.length];
-    const grain = Bodies.circle(x, jitter, ballSize * width / baseWidth, {
+    let grain = Bodies.circle(x, jitter, ballSize * width / baseWidth, {
       friction: 0.05,
       restitution: 1.1,
       density: 0.001,
@@ -200,25 +190,27 @@ const PlinkoDropper = ({ labels = [], initialCols = 30, initialRows = 8, bucketH
         fillStyle: grainColor,
       }
     });
-    console.log("adding grain");
+ if (totalNumberOfBalls == 5){
+      grain = Bodies.circle(width/2, canvasRef.current.offsetHeight, ballSize * width / baseWidth, {
+        friction: 0.05,
+        restitution: 0.1,
+        density: 5.0,
+        render: {
+          fillStyle: grainColor,
+        }
+      });
+    } 
+
     grainList.push(grain);
     World.add(engineRef.current.world, grain);
   };
 
   const dropBalls = () => {
-    for(var i = 0; i < 5; i++){
+    for(var i = 0; i < 6; i++){
       totalNumberOfBalls++;
       addGrain();
     }
       console.log("totalnum balls " + totalNumberOfBalls);
-  };
-
-  const shuffleLabels = () => {
-    if(currentTeamList[0] == 'Stardevs Valley'){
-      setCurrentTeamList(teamNameListB);
-    }else {
-      setCurrentTeamList(teamNameListA);
-    }
   };
 
   const clearRenderer = () => {
@@ -236,7 +228,7 @@ const PlinkoDropper = ({ labels = [], initialCols = 30, initialRows = 8, bucketH
          <div className="color-guide">
         {colourList.map((color, index) => (
           <div key={index} className="color-guide-item" style={{ backgroundColor: color }}>
-            {currentTeamList[index]}
+            {teamList[index]}
           </div>
         ))}
       </div>
@@ -249,11 +241,6 @@ const PlinkoDropper = ({ labels = [], initialCols = 30, initialRows = 8, bucketH
           ))}
         </div>
         <div ref={canvasRef} onMouseDown={dropBalls} className="dropper-canvas" />
-      </div>
-      <div className="control-padding"></div>
-      <div className="controls">
-        <button onClick={dropBalls} className='button'>Drop Balls</button>
-     <button onClick={shuffleLabels} className='button alternate'>Swap Team List</button>
       </div>
     </div>
   );

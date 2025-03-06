@@ -8,7 +8,7 @@
 }
 
 * {
-  font-family: 'MyCustomFont', sans-serif; /* Add fallback font */
+  font-family: sans-serif; /* Add fallback font */
 }
 
 .app-container {
