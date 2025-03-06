@@ -2,6 +2,7 @@
   "name": "dropper-game",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://jackmcgrory.github.io/dropper-game",
   "dependencies": {
     "@fontsource/pixelify-sans": "^5.1.1",
     "@testing-library/dom": "^10.4.0",
@@ -9,6 +10,7 @@
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^13.5.0",
     "font-face": "^2.3.4",
+    "gh-pages": "^6.3.0",
     "matter-js": "^0.20.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -19,6 +21,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
