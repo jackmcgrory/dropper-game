@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/dropper-game/static/css/main.79af196c.css",
+    "main.js": "/dropper-game/static/js/main.616be3c8.js",
+    "static/js/453.3d77cd26.chunk.js": "/dropper-game/static/js/453.3d77cd26.chunk.js",
+    "static/media/PixelifySans-Regular.ttf": "/dropper-game/static/media/PixelifySans-Regular.78dfe66b4f31904f6ee9.ttf",
+    "index.html": "/dropper-game/index.html",
+    "main.79af196c.css.map": "/dropper-game/static/css/main.79af196c.css.map",
+    "main.616be3c8.js.map": "/dropper-game/static/js/main.616be3c8.js.map",
+    "453.3d77cd26.chunk.js.map": "/dropper-game/static/js/453.3d77cd26.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.79af196c.css",
+    "static/js/main.616be3c8.js"
+  ]
+}
